@@ -3,5 +3,5 @@ hogehogehogehogehogehogehogehogehogehogehoge
 
 ## hogehoge
 
-- test: test
-- huga: huga
+- test
+- huga
