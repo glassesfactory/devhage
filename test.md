@@ -3,6 +3,7 @@ hogehogehogehogehogehogehogehogehogehogehoge
 
 ## meta
 
+- slag: test
 - tags:
   - test
   - hoge
