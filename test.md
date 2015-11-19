@@ -6,9 +6,8 @@ hogehogehogehogehogehogehogehogehogehogehoge
 - slag: test
 - tags: test, hoge
 - nest
-  - test
-  - test
-  - test
+  - foo: bar
+  - over: ver
 
 - category: test
 
