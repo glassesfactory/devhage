@@ -4,7 +4,7 @@ hogehogehogehogehogehogehogehogehogehogehoge
 ## meta
 
 - slag: test
-- date: 2015-11-26
+- date: 2015-11-26 10:00
 - tags: test, hoge
 - nest
   - foo: bar
