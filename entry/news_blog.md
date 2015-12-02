@@ -8,6 +8,7 @@ news blog
 - date: 2015-11-27 10:00
 - tags: test, hoge
 - category: test
+- active: true
 
 ## content
 
