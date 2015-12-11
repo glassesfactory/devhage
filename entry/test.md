@@ -4,7 +4,7 @@ hogehogehogehogehogehogehogehogehogehogehoge
 
 ## meta
 
-- slag: test
+- slug: test
 - date: 2015-11-26 10:00
 - tags: test, hoge
 - category: test
