@@ -10,7 +10,7 @@
 
 - slug: newblog
 - date: 2015-12-13 10:00
-- tags: newsblog
+- tags: blog,js
 - active: true
 
 ## content
