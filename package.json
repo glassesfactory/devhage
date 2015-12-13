@@ -1,0 +1,32 @@
+{
+  "name": "static_blog",
+  "version": "1.0.0",
+  "description": "bloggggggggggggggg",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && broccoli build dist && node devserver.js"
+  },
+  "author": "Yamaguchi Eikichi",
+  "license": "MIT",
+  "devDependencies": {
+    "aws-sdk": "^2.2.17",
+    "broccoli-static-compiler": "^0.2.2",
+    "jsdom": "^3.1.2",
+    "markdown-to-json": "^0.4.2",
+    "node-rss": "^1.0.5",
+    "request": "^2.65.0"
+  },
+  "dependencies": {
+    "broccoli": "^0.16.9",
+    "broccoli-babel-transpiler": "^5.5.0",
+    "broccoli-browserify": "^0.1.0",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-jade": "^1.1.0",
+    "broccoli-merge-trees": "^1.0.0",
+    "broccoli-stylus-single": "^0.4.1",
+    "browser-sync": "^2.10.0",
+    "mson2json": "^1.0.7",
+    "stylus": "^0.52.4"
+  }
+}
