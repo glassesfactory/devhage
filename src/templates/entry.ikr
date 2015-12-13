@@ -1,0 +1,17 @@
+<div class="entry-detail">
+  <article class="entry-list__entry">
+    <header class="entry-header">
+      <h1>{{entry.title}}</h1>
+      <div class="entry-date">{{this.toDate(this.datas.entry.date)}}</div>
+      <ul class="entry-tags">
+        <li i-loop="tag in entry.tags">
+          {{tag}}
+        </li>
+      </ul>
+    </header>
+    <div class="entry-description">{{{entry.description}}}</div>
+    <div class="entry-content">
+      {{{entry.content}}}
+    </div>
+  </article>
+</div>

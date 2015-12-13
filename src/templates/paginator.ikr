@@ -1,0 +1,9 @@
+<div class="paginator">
+  <a href="/page/{{prev}}" class="paginator-prev js-ps-change" i-if="this.datas.prev"></a>
+  <ul class="paginator-list">
+    <li class="{{this.getKlass(num)}}" i-loop="num in pages">
+      <a href="/page/{{num}}" class="js-ps-change">{{num}}</a>
+    </li>
+  </ul>
+  <a href="/page/{{next}}" class="paginator-next js-ps-change" i-if="this.datas.next"></a>
+</div>

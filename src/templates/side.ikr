@@ -1,0 +1,5 @@
+<ul class="side-list">
+  <li class="side-entry" i-loop="entry in entries">
+    <a href="/{{entry.slug}}" class="js-ps-change">{{entry.title}}</a>
+  </li>
+</ul>

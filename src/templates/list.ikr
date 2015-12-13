@@ -1,0 +1,19 @@
+<div class="entry-list">
+  <article class="entry-list__entry" i-loop="entry in entries">
+    <header class="entry-header">
+      <h1>
+        <a href="/{{entry.slug}}/" class="js-ps-change">{{entry.title}}</a>
+      </h1>
+      <div class="entry-date">{{this.toDate(entry.date)}}</div>
+      <ul class="entry-tags">
+        <li i-loop="tag in entry.tags">
+          {{tag}}
+        </li>
+      </ul>
+    </header>
+    <div class="entry-description">{{{entry.description}}}</div>
+    <div class="entry-list-more">
+      <a href="/{{entry.slug}}/" class="entry-list-more__entry js-ps-change">more</a>
+    </div>
+  </article>
+</div>
