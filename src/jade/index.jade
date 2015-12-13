@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width")
+
+    title devhage
+    link(type="text/css" rel="stylesheet" href="/assets/stylesheets/main.css")
+    link(title="デブハゲ" href="http://dev.hageee.net/feed" rel="alternate" type="application/rss+xml")
+    
+    
+  body
+    .body-wrapper
+      .sidebar
+        .sidebar-inner
+          .sidebar-logo
+            a(href="/").js-ps-change.logo devhage
+          #js-sidebar-recent.sidebar-recent-list
+          .sidebar-about
+            #js-side-icon.sidebar-about-icon
+              img(src="https://ja.gravatar.com/userimage/13578199/5a111c4643ab5d64858a8e7c34d5a996.jpg")
+            #js-side-about.sidebar-about-content
+              ul
+                li 書いてる人: hage
+                li 職業: 釣り人, なんちゃってプログラマ
+                li: a(href="http://twitter.com/__hage__") twitter
+                li: a(href="http://github.com/glassesfactory") github
+              
+          footer.footer Copyright &copy; devhage. All Rights Reserved.
+      .main
+        #js-content
+        #js-paginator
+        
+    script(type="text/javascript" charset="utf-8" src="/assets/javascripts/front.js")

@@ -1,0 +1,236 @@
+@import '_reset.styl'
+
+html, body
+  height 100%
+  // font-family Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+body
+  font-family "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+
+.body-wrapper
+  padding-left 163px
+  height 100%
+
+.main
+  width 720px
+
+.sidebar
+  width 150px
+  z-index 1000
+  position fixed
+  left 150px
+  margin-left -150px
+  background #ffffff
+  height 100%
+  // border-right 3px solid #f7f7f7
+  border-style solid
+  border-width 0 3px 0 0
+  border-image url('/assets/images/side.png') 0 3 0 0 round
+
+.sidebar-inner
+  padding 10px
+
+.sidebar-logo
+  text-align center
+
+.logo
+  background-image url('/assets/images/logo.svg')
+  background-repeat no-repeat
+  width 82px
+  height 0
+  overflow hidden
+  padding-top 62px
+  display inline-block
+
+.side-list
+  margin-top 10px
+
+.side-entry
+  font-size 13px
+  font-weight bold
+  border-bottom 1px solid #e2e2e2
+  cursor pointer
+  line-height 1.8em
+  a
+    display inline-block
+    color #090909
+    width 100%
+    &:hover
+      text-decoration none
+  &:hover
+    background-color #F51BA6
+    border-bottom-color transparent
+    a
+      color #ffffff
+
+// えんとりー
+.entry-list, .entry-detail
+  padding-top 10px
+  a
+    color #090909
+
+.entry-list__entry
+  max-width 720px
+  margin-bottom 50px
+
+.entry-header
+  padding 0 10px 10px
+  border-bottom 5px solid #f2f2f2
+  h1
+    font-size 32px
+
+.entry-date
+  font-size 12px
+  font-weight 500
+.entry-tags
+  display none
+
+.entry-description
+  padding 15px 10px 20px
+  font-weight 500
+  line-height 1.66em
+  p
+    margin-bottom 12px
+
+
+.entry-list-more
+  padding-left 10px
+  .entry-list-more__entry
+    color #ffffff
+    background-color #434343
+    font-weight 600
+    padding 3px 6px
+    &:hover
+      background-color #F51BA6
+      text-decoration none
+
+.entry-detail
+  .entry-description
+    padding-bottom 0
+
+
+
+.entry-content
+  padding 0 10px 10px
+  font-weight 500
+  line-height 1.66em
+  h2
+    font-size 24px
+    padding-top 20px
+    margin-bottom 12px
+    border-bottom 2px solid #e2e2e2
+    padding-bottom 5px
+  h3
+    font-size 18px
+    margin-bottom 12px
+  p
+    margin-bottom 12px
+  ul
+    list-style-position inside
+    margin-bottom 12px
+    li
+      p
+        margin-bottom 0
+
+
+
+
+
+.paginator
+  width 160px
+  margin 0 auto
+  padding-bottom 20px
+  text-align center
+.paginator-list
+  display inline-block
+
+.paginator-entry
+  display inline-block
+  margin-right 10px
+  a
+    color #e2e2e2
+    font-weight 500
+.paginator-entry.current
+  a
+    color #434343
+
+.paginator-prev
+  display inline-block
+  margin-bottom 10px
+  width 0
+  height 0
+  border-style solid
+  border-width 0 80px 30px 80px
+  border-color transparent transparent #f2f2f2 transparent
+.paginator-next
+  margin-top 10px
+  display inline-block
+  width 0
+  height 0
+  border-style solid
+  border-width 30px 80px 0 80px
+  border-color #f2f2f2 transparent transparent transparent
+
+
+.footer
+  font-size 10px
+  color #090909
+  position absolute
+  bottom 5px
+  left 10px
+  width 130px
+
+.sidebar-about-icon
+  width 40px
+  border-radius 40px
+
+  border 4px solid #e2e2e2
+  position absolute
+  bottom 45px
+  left 50%
+  margin-left -20px
+  overflow hidden
+  cursor pointer
+  img
+    width 100%
+    vertical-align middle
+
+.sidebar-about-content
+  font-size 12px
+  color #090909
+  background-color #e2e2e2
+  border-radius 4px
+  padding 5px
+  position absolute
+  bottom 105px
+  left 10px
+  width 120px
+  opacity 0
+  visibility hidden
+  ul
+    list-style none
+    line-height 1.6em
+  &:after
+    display block
+    content ""
+    width 0
+    height 0
+    border-style solid
+    border-width 10px 10px 0 10px
+    border-color #e2e2e2 transparent transparent transparent
+    position absolute
+    margin-left -10px
+    left 50%
+    bottom -10px
+
+.sidebar-about-content.current
+  opacity 1
+  visibility visible
+  animation aboutVisible 0.17s ease 0s 1
+
+@keyframes aboutVisible
+  0%
+    opacity 0.2
+    transform translateY(8px)
+  100%
+    opacity 1
+    transform translateY(0)
