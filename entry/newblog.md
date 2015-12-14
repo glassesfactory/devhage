@@ -22,6 +22,13 @@ feed が飛んでるので懲りずにとってた人には検知されてるか
 
 このブログは下図のような構成で出来ている。
 
+作る方  
+![](/resources/images/entry.png)
+
+読む方
+![](/resources/images/get.png)
+
+
 特定の場所に置いた md を元に JSON を生成して S3に。  
 しようかと思ったけど nginx + HTTP/2 での配信のほうが速かったのでそっちに変えた。
 md をパースした結果を DynamoDB にも保存しつつ、 nginx にもうけた hook ポイントに post して、  
