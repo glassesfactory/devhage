@@ -2,7 +2,7 @@ import Entry from '../models/Entry'
 import Signal from '../core/signal'
 import Ikari from '../core/templates/ikari'
 import tmpl from '../templates/paginator'
-const Config = require('../../config.json');
+const Config = require('../../../config.json');
 
 const TGT = 'js-paginator'
 

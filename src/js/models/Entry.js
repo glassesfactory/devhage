@@ -2,7 +2,7 @@ const request = require('../core/xhr');
 const Emitter = require('../core/emitter');
 const ObjectHelper = require('../core/helpers/object');
 const TextHelper = require('../core/helpers/text');
-const Config = require
+const Config = require('../../../config.json')
 
 
 class Entry extends Emitter{
@@ -46,7 +46,7 @@ class Entry extends Emitter{
     取得する
   */
   static fetch(slug){
-    let url = "https://s3-ap-northeast-1.amazonaws.com/devhage/data/" + slug + ".json";
+    let url = "/data/" + slug + ".json";
     let promise = new Promise((resolve, reject)=>{
       if(Entry.collection.hasOwnProperty(slug)){
         resolve(Entry.indexed[id]);
@@ -80,7 +80,7 @@ class Entry extends Emitter{
       })
       return promise;
     }
-    let url = "https://tl7y10l7jd.execute-api.ap-northeast-1.amazonaws.com/prod/entries/page/" + page;
+    let url = Config.api_prefix + "/entries/page/" + page;
     let promise = new Promise((resolve, reject)=>{
       request.get(url)
       .end((err, res)=>{
