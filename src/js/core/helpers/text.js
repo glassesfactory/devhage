@@ -10,6 +10,4 @@ export default class TextHelper{
     let str = encoded.replace(/&lt;/g, "<").replace(/&gt;/g,">").replace(/&nbsp;/g, " ").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/&#039;/g, "'")
     return str
   }
-
-
 }
