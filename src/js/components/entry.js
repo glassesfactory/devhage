@@ -56,7 +56,7 @@ export default class EntryList {
   toDate(date){
     date = new Date(date)
     let year = date.getFullYear()
-    let month = date.getMonth()
+    let month = date.getMonth() + 1
     let day = date.getDate()
     let hour = ("0" + date.getHours()).slice(-2)
     let min = ("0" + date.getMinutes()).slice(-2)
