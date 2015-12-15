@@ -1,10 +1,17 @@
 doctype html
-html(lang="en")
+html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width")
-
-    title devhage
+    
+    title デブハゲ
+    meta(name="description" content="でぶはげ　めしくえ")
+    meta(property="og:locale" content="ja_JP")
+    meta(property="og:site_name" content="デブハゲ")
+    meta(property="og:url" content="https://dev.hageee.net/")
+    meta(property="og:type" content="article")
+    meta(property="og:title" content="デブハゲ")
+    meta(property="og:description" content="でぶはげ　めしくえ")
     link(type="text/css" rel="stylesheet" href="/assets/stylesheets/main.css")
     link(title="デブハゲ" href="http://dev.hageee.net/feed" rel="alternate" type="application/rss+xml")
     
@@ -14,7 +21,7 @@ html(lang="en")
       .sidebar
         .sidebar-inner
           .sidebar-logo
-            a(href="/").js-ps-change.logo devhage
+            a(href="/")#js-sidebar-logo.js-ps-change.logo devhage
           #js-sidebar-recent.sidebar-recent-list
           .sidebar-about
             #js-side-icon.sidebar-about-icon

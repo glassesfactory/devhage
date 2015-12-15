@@ -20,14 +20,12 @@ class Router extends Kazitori{
       while(tgt.firstChild){tgt.removeChild(tgt.firstChild);}
     }
     let div = doc.createElement('div');
-    // div.className = "give-me-entry";
     Entry.list()
     .then(function(result){
       Signal.notify("list_fetch", [result, 1]);
-      // Signal.notify("")
     })
-    .catch(function(){
-      console.log("aaaa");
+    .catch(function(error){
+      console.log("aaaa", error);
     });
   }
 
@@ -44,7 +42,6 @@ class Router extends Kazitori{
       console.log("noooooo", error);
     });
     paginator._clearDom();
-    // Entry.fetch(id);
   }
 
   list(page){
@@ -94,7 +91,6 @@ doc.onreadystatechange =()=>{
     Entry.list()
     .then(function(result){
       Signal.notify("first_list", result);
-      // Signal.notify("")
     })
     .catch(function(error){
       console.log("aaaa", error);
@@ -111,4 +107,11 @@ function setUp(){
     event.preventDefault();
     balloon.classList.add("current");
   });
+
+  let logo = document.getElementById('js-sidebar-logo');
+  logo.addEventListener("click", function(event){
+    event.preventDefault();
+    window.router.change("/");
+  })
+
 }
