@@ -41,6 +41,40 @@ export default class EntryList {
   _fetchedHandler(signal, result){
     this._clearDom();
     this.render(result);
+    this._scriptDo();
+  }
+
+  _scriptDo(){
+    let doc = document;
+    let tgt = doc.getElementById(TGT);
+    let scripts = tgt.getElementsByTagName('script');
+
+    let len = scripts.length;
+    for(let i = 0; i < len; i++){
+      let old = scripts[i];
+      if(!old){
+        continue;
+      }
+      let src = old.src;
+      let frame = doc.createElement('iframe');
+      doc.body.appendChild(frame);
+
+      let fDoc = frame.contentWindow.document;
+      fDoc.open();
+      let dp = old.parentNode;
+      frame.contentWindow.cb = function(html){
+        let div = doc.createElement('div');
+        div.innerHTML = html;
+        dp.insertBefore(div, old);
+        dp.removeChild(old);
+        frame.parentNode.removeChild(frame);
+      }
+
+      fDoc.write('<div id="appender"><script src="' + src + '"></script></div><script>cb(document.getElementById("appender").innerHTML);</script>');
+
+      fDoc.close();
+
+    }
   }
 
 
