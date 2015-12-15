@@ -12,7 +12,7 @@ feed が飛んでるので懲りずにとってた人には検知されてるか
 ## meta
 
 - slug: newblog
-- date: 2015-12-13 10:00
+- date: 2015-12-15 20:49
 - tags: blog,js
 - active: true
 
