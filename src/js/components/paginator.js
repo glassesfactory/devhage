@@ -75,7 +75,7 @@ export default class EntryList {
     let elm;
     page = parseInt(page);
     this.current = page;
-    let limti = Config.limit;
+    let limit = Config.limit;
     // to config
     if(Entry.count < (limit + 1)){
       return;
