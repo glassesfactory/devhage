@@ -5,10 +5,12 @@ var jsdom = require('jsdom');
 
 var aws = require('aws-sdk');
 var s3 = new aws.S3({apiVersion: '2006-03-01'});
+var dynamo = new aws.DynamoDB({region: 'ap-northeast-1'});
 
 var currentCtx = null;
 
-// Markdownコンパイルするマン
+// TODO: ちょっとこのスクリプト大きくなりすぎたので分割
+
 exports.handler = function(event, context) {
   currentCtx = context;
   var src = event.src;
@@ -28,27 +30,33 @@ exports.handler = function(event, context) {
           context.done();
         }
         var json = _createContent(result);
-        console.log(json);
         if(!json.slug){
           // throw Err
           console.log("no slug");
           context.done();
           return;
         }
-        // TODO: ファイルの保存はキューイングに入れたい
+        // console.log(JSON.stringify(json));
+        // ファイルの保存はキューイングに入れたい
         var fileName = json.slug + ".json";
-        // s3 に保存するならこれ
-        s3.putObject({
-          Bucket: "ばけっと",
-          Key: "data/" + fileName,
-          Body: JSON.stringify(json),
-          ContentType: "application/json"
-        }, function(err, res){
-          if(err){
-            console.log(err);
-          }
-          context.done();
+
+        var opts = {
+          uri: "ふっくぽいんと",
+          json: true,
+          headers: {
+            "content-type": "application/json",
+          },
+          body: json
+        };
+        request.post(opts)
+        .on("response", function(postRes){
+          // console.log(postRes);
+
+          postRes.on("end",function(){
+            putDB(json, context)
+          })
         });
+
       });
     });
   });
@@ -160,4 +168,53 @@ function getKV(item){
             obj1[attrname] = obj2[attrname];
         }
     }
+}
+
+function putDB(entry, context, contentType){
+  if(!entry.hasOwnProperty("tags")){
+    entry.tags = [];
+  }
+  var tags = entry.tags.map(function(tag){
+    return {"S": tag};
+  });
+  if(!tags){
+    tags = [];
+  }
+
+  var param = {
+    TableName: "でぶはげえんとりー",
+    Item: {
+      "slug":{"S": String(entry.slug)},
+      "date":{"N": String(entry.date)},
+      "title": {"S": entry.title},
+      "description": {"S": entry.description},
+      "created_at": {"N": String(entry.created_at)},
+      "content": {"S": String(entry.content)},
+      "tags": {"L": tags},
+      "active": {"S": "true"}
+    }
+  };
+  console.log(param.Item);
+
+
+  dynamo.putItem(param, function(err, data){
+    if(err) {
+      console.log("dynamo error", err);
+      context.done();
+    }
+    else {
+      console.log("data uploaded successfully," + data);
+      var lambda = new aws.Lambda({apiVersion: '2014-11-11'});
+      var lambdaParams = {
+        FunctionName: "かうんたーようらむだ"
+        };
+      lambda.invokeAsync(lambdaParams, function(err, data){
+        lambdaParams.FunctionName = "ふぃーどようらむだ";
+        // クソだw
+        lambda.invokeAsync(lambdaParams, function(err, data){
+          context.succeed();
+        });
+      });
+    }
+  });
 }
