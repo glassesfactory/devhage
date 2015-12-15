@@ -28,7 +28,7 @@ class Entry extends Emitter{
     this.createdAt = ObjectHelper.kv("created_at", obj);
     this.content = ObjectHelper.kv("content", obj);
     this.date = ObjectHelper.kv("date", obj);
-    this.tags = ObjectHelper.kv("tags", obj);
+    this.tags = ObjectHelper.kv("tags", obj, []);
   }
 
   save(){
