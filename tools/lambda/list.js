@@ -3,25 +3,26 @@ var dynamo = new doc.DynamoDB();
 
 exports.handler = function(event, context) {
     var param = {
-      TableName: "かうんと用テーブル",
-      KeyConditionExpression: "table_name = :table_name",
-      ExpressionAttributeValues: {":table_name": "entries"}
-    }
+      TableName: "かうんとてーぶる"
+    //   KeyConditionExpression: "table_name = :table_name AND activity = :activity",
+    //   ExpressionAttributeValues: {":table_name": "entries", ":activity": "true"}
+    };
 
-    dynamo.query(param, function(err, data){
+    dynamo.scan(param, function(err, data){
       // カウント取れなかったら実行中止
       if(err){
-        console.log(err);
+        console.log("えらー", err);
         context.done();
-        return
+        return;
       }
       count = data.Items[0].count;
+      console.log("count:", count);
       param = {
           TableName: "えんとりーてーぶる",
-          ScanIndexForward: true,
+          ScanIndexForward: false,
           KeyConditionExpression: "active = :activity",
           ExpressionAttributeValues: {":activity": "true"}
-      }
+      };
 
       if(event.id === '' || event.id == "1"){
         param.Limit = "5";
@@ -33,7 +34,7 @@ exports.handler = function(event, context) {
           if(!data){
             console.log("data not found");
             context.done();
-            return
+            return;
           }
 
           var response = {
