@@ -6,22 +6,6 @@ local cjson = require "cjson"
 local lfs = require "lfs"
 
 -- list of strings to replace (the order is important to avoid conflicts)
-local cleaner = {
-	{ "&amp;", "&" }, -- decode ampersands
-	{ "&#151;", "-" }, -- em dash
-	{ "&#146;", "'" }, -- right single quote
-	{ "&#147;", "\"" }, -- left double quote
-	{ "&#148;", "\"" }, -- right double quote
-	{ "&#150;", "-" }, -- en dash
-	{ "&#160;", " " }, -- non-breaking space
-	{ "<br ?/?>", "\n" }, -- all <br> tags whether terminated or not (<br> <br/> <br />) become new lines
-	{ "</p>", "\n" }, -- ends of paragraphs become new lines
-	{ "(%b<>)", "" }, -- all other html elements are completely removed (must be done last)
-	{ "\r", "\n" }, -- return carriage become new lines
-	{ "[\n\n]+", "\n" }, -- reduce all multiple new lines with a single new line
-	{ "^\n*", "" }, -- trim new lines from the start...
-	{ "\n*$", "" }, -- ... and end
-}
 
 
 ngx.req.read_body()
@@ -76,10 +60,8 @@ tmplH:close()
 -- description sprit tags
 if json.description ~= nil then
   -- clean html from the string
-  for i=1, #cleaner do
-  	local cleans = cleaner[i]
-  	json.description = string.gsub( json.description, cleans[1], cleans[2] )
-  end
+  -- json.description = string.gsub(json.description, /<!--[\s\S]*?-->/gi, "")
+  json.description = string.gsub(json.description, "<%/?([%w][%w0-9]*)[^>]*>", "")
 
 end
 
