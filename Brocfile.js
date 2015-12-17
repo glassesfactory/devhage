@@ -6,6 +6,8 @@ const mergeTrees = require('broccoli-merge-trees');
 const jadeBuilder = require('broccoli-jade');
 const stylusBuilder = require('broccoli-stylus-single');
 const pickFiles = require('broccoli-static-compiler');
+const uglifyJavaScript = require('broccoli-uglify-js');
+const cleanCSS = require('broccoli-clean-css');
 const src = 'src/js';
 const stylus = 'src/stylus';
 const pkg = require('./package.json');
@@ -57,5 +59,6 @@ var imagesTree = pickFiles('src/statics',{
   // files: ['**/*.svg'],
   destDir: 'assets'
 });
-
+js = uglifyJavaScript(js);
+css = cleanCSS(css);
 module.exports = mergeTrees([js, html, css, imagesTree]);
