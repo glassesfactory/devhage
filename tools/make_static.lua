@@ -84,4 +84,12 @@ else
   fileOG:close()
 end
 
+-- 投げっぱなしでいいかな?
+re1, res2 = ngx.location.capture_multi{
+  { "/get_feed/"},
+  { "/get_count/"}
+}
+
+
+
 ngx.say("complete")
