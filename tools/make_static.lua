@@ -7,7 +7,6 @@ local lfs = require "lfs"
 
 -- list of strings to replace (the order is important to avoid conflicts)
 
-
 ngx.req.read_body()
 local body_data = ngx.req.get_body_data()
 if body_data == nil then
@@ -61,8 +60,13 @@ tmplH:close()
 if json.description ~= nil then
   -- clean html from the string
   -- json.description = string.gsub(json.description, /<!--[\s\S]*?-->/gi, "")
+  json.description = string.gsub(json.description, "&lt;", "<")
+  json.description = string.gsub(json.description, "&gt;", ">")
+  json.description = string.gsub(json.description, "&nbsp;", " ")
+  json.description = string.gsub(json.description, "&quot;", '"')
+  json.description = string.gsub(json.description, "&amp;", "&")
+  json.description = string.gsub(json.description, "&#039;", "'")
   json.description = string.gsub(json.description, "<%/?([%w][%w0-9]*)[^>]*>", "")
-
 end
 
 local result = lustache:render(tmpl, {entry = json})
