@@ -41,7 +41,7 @@ nginx に lua-nginx-module を導入するような記事はすでに山ほど�
 
 とりあえずソースはこのブログのリポジトリにある。
 
-[make_static.lua](https://github.com/glassesfactory/devhage/blob/master/tools/make_static.lua)
+[mdぱーさーおかしくね](https://github.com/glassesfactory/devhage/blob/master/tools/make_static.lua)
 
 ざっくり流れを挙げてみる
 
