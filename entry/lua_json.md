@@ -45,8 +45,8 @@ nginx に lua-nginx-module を導入するような記事はすでに山ほど�
 
 ざっくり流れを挙げてみる
 
-* `ngx.req.read_body()` で lua から nginx に来ている request の body を読めるようにする。  
-* `ngx.req.get_body_data()` で body のデータを手に入れる。
+* ngx.req.read_body() で lua から nginx に来ている request の body を読めるようにする。  
+* ngx.req.get_body_data() で body のデータを手に入れる。
 * 一定サイズ(8kだか16kだか)を越えた時、tmp ディレクトリにファイルとして置かれているのでそっちを読む
 * json としてパース。必要な情報(slugって項目をファイル名としている。)を抜き出す。
 * ファイルとして保存
