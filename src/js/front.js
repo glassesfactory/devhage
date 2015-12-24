@@ -37,6 +37,7 @@ class Router extends Kazitori{
     Entry.fetch(id)
     .then(function(result){
       Signal.notify("detail_fetch", result);
+      document.title = result.title + " - デブハゲ";
     })
     .catch(function(error){
       console.log("noooooo", error);
