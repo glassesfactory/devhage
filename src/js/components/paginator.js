@@ -92,7 +92,8 @@ export default class EntryList {
         maxPage = parseInt(maxPage) + 1;
       }
       let pages;
-      if(page < 3){
+      console.log(maxPage, page)
+      if(page <= 3){
         let i = maxPage;
         if(i > (limit - 1)){
           i = limit;
