@@ -21,9 +21,9 @@
 
 とりあえず選定した手段は以下。
 
-* 管理画面: WordPress
-* API: WP REST API
-* フロント: Polymer
+管理画面: WordPress  
+API: WP REST API  
+フロント: Polymer  
 
 ## WordPress の用意
 
