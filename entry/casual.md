@@ -100,8 +100,8 @@ API サーバーから HTML 返すとか、本来そんな構成になんかし�
 UserAgent を見て、facebook の bot だった場合は sub request で無理やり WordPress から取ってくる。
 
 
-  if ($http_user_agent ~* "facebookexternalhit") {  
-    content_by_lua '   
+    if ($http_user_agent ~* "facebookexternalhit") {  
+      content_by_lua '   
       local tgt = ngx.var.id  
       res = ngx.location.capture("/prx", { args = {tgt = tgt }})  
       if res.body then  
@@ -109,9 +109,9 @@ UserAgent を見て、facebook の bot だった場合は sub request で無理�
       else
         ngx.log(ngx.ERR, res.err)  
       end  
-    ';  
-    break;  
-  }
+      ';  
+      break;  
+    }
 
 
 まぁ一段キャッシュ挟んだほうがいいですが今回は省略。  
