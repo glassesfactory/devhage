@@ -72,11 +72,11 @@ gulp タスクを組んで Babel とかも使おうかと思ったけど、今�
 
 例えば数字 ID が個別ページの URL であるならば、以下のような config が手っ取り早い。
 
-```
-location ~ ^/\d+ {  
-  try_files $uri /index.html;  
-}
-```
+
+    location ~ ^/\d+ {  
+      try_files $uri /index.html;  
+    }
+
 
 とりあえず問答無用なやつ。
 
@@ -99,20 +99,20 @@ API サーバーから HTML 返すとか、本来そんな構成になんかし�
 そこで lua を併用して力技で取ってくることにした。  
 UserAgent を見て、facebook の bot だった場合は sub request で無理やり WordPress から取ってくる。
 
-```
-if ($http_user_agent ~* "facebookexternalhit") {  
-  content_by_lua '   
-    local tgt = ngx.var.id  
-    res = ngx.location.capture("/prx", { args = {tgt = tgt }})  
-    if res.body then  
-      ngx.print(res.body)  
-    else
-      ngx.log(ngx.ERR, res.err)  
-    end  
-  ';  
-  break;  
-}
-```
+
+  if ($http_user_agent ~* "facebookexternalhit") {  
+    content_by_lua '   
+      local tgt = ngx.var.id  
+      res = ngx.location.capture("/prx", { args = {tgt = tgt }})  
+      if res.body then  
+        ngx.print(res.body)  
+      else
+        ngx.log(ngx.ERR, res.err)  
+      end  
+    ';  
+    break;  
+  }
+
 
 まぁ一段キャッシュ挟んだほうがいいですが今回は省略。  
 念のため言うとこのままコピペしても動かないので。  
