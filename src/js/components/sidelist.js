@@ -40,7 +40,8 @@ export default class SideList {
   _bindHandler(){
     let doc = document;
     let tgt = doc.getElementById(TGT);
-
+    if(!tgt)
+      return;
     let els = tgt.getElementsByClassName('js-ps-change');
     for(let i = 0; i < els.length; i++){
       let elm = els[i];
@@ -60,6 +61,8 @@ export default class SideList {
     }
     let doc = document;
     let tgt = doc.getElementById(TGT);
+    if(!tgt)
+      return;
     if(tgt.children.length > 0){
         while(tgt.firstChild){tgt.removeChild(tgt.firstChild);}
       }

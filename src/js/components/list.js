@@ -1,3 +1,4 @@
+'use strict';
 import Entry from '../models/Entry'
 import Signal from '../core/signal'
 import Ikari from '../core/templates/ikari'
@@ -39,7 +40,7 @@ export default class EntryList {
   }
 
   _fetchedHandler(signal, result){
-    this._clearDom();
+    // this._clearDom();
     this.render(result[0]);
     this._bindHandler();
   }
@@ -65,17 +66,20 @@ export default class EntryList {
 
   toDate(date){
     date = new Date(date)
-    let year = date.getFullYear()
-    let month = date.getMonth() + 1
-    let day = date.getDate()
-    let hour = ("0" + date.getHours()).slice(-2)
-    let min = ("0" + date.getMinutes()).slice(-2)
-    return year + "/" + month + "/" + day + " " + hour + ":" + min
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = ("0" + date.getHours()).slice(-2);
+    let min = ("0" + date.getMinutes()).slice(-2);
+    return year + "/" + month + "/" + day + " " + hour + ":" + min;
   }
 
 
 
   render(data){
+    if(!data || data.length < 1){
+      return;
+    }
     let elm;
     try{
       elm = this.tmpl.update({entries:data});
@@ -84,6 +88,9 @@ export default class EntryList {
     }
     let doc = document;
     let tgt = doc.getElementById(TGT);
+    if(!TGT) {
+      return;
+    }
     tgt.appendChild(elm);
   }
 }

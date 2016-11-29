@@ -59,11 +59,11 @@ class Router extends Kazitori{
   }
 
   _clickHandler(event){
-    console.log("あれ?");
     event.preventDefault();
     let tgt = event.currentTarget;
     let href = tgt.getAttribute('href');
     window.router.change(href);
+    window.scrollTo(0, 0);
   }
 }
 
@@ -78,7 +78,7 @@ window.router;
 doc.onreadystatechange =()=>{
   if(doc.readyState == "complete"){
     setUp();
-    sideList = new SideList();
+    // sideList = new SideList();
     list = new EntryList();
     paginator = new Paginator();
     detail = new EntryDetail();
@@ -103,16 +103,19 @@ doc.onreadystatechange =()=>{
 function setUp(){
   let icon = document.getElementById('js-side-icon');
   let balloon = document.getElementById('js-side-about');
+  if(icon){
+    icon.addEventListener("click", function(event){
+      event.preventDefault();
+      balloon.classList.add("current");
+    });
+  }
 
-  icon.addEventListener("click", function(event){
-    event.preventDefault();
-    balloon.classList.add("current");
-  });
-
-  let logo = document.getElementById('js-sidebar-logo');
-  logo.addEventListener("click", function(event){
-    event.preventDefault();
-    window.router.change("/");
-  })
+  let logo = document.getElementById('js-logo');
+  if(logo){
+    logo.addEventListener("click", function(event){
+      event.preventDefault();
+      window.router.change("/");
+    });
+  }
 
 }

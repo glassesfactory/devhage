@@ -80,29 +80,46 @@ class Entry extends Emitter{
       })
       return promise;
     }
-    let url = Config.api_prefix + "/entries/page/" + page;
-    let promise = new Promise((resolve, reject)=>{
-      request.get(url)
-      .end((err, res)=>{
-
-        if(err != null || !res.body){
-          reject();
-          return
-        }
-        let data = res.body.data;
-        let count = res.body.count;
-
-        Entry.count = count;
-        let result = [];
-        data.map(function(item){
-          let model = new Entry(item);
-          result.push(model);
-          model.save();
-        });
+    let url = "/data/list/all.json";
+    if(Entry.listLoaded){
+      let promise = new Promise((resolve, reject)=>{
+        let start = (page - 1) * 5;
+        let end = page * 5;
+        let result = Entry.collection.slice(start, end);
+        console.log(result);
         resolve(result);
       });
-    });
-    return promise;
+      return promise;
+    } else {
+      let promise = new Promise((resolve, reject)=>{
+        request.get(url)
+        .end((err, res)=>{
+
+          if(err != null || !res.body){
+            reject();
+            return
+          }
+          Entry.listLoaded = true;
+          let data = res.body.data;
+          let count = res.body.count;
+
+          Entry.count = count;
+          let tmp = [];
+
+          data.map(function(item){
+            let model = new Entry(item);
+            tmp.push(model);
+            model.save();
+            Entry.collection.push(model);
+          });
+          let start = (page - 1) * 5;
+          let end = page * 5;
+          let result = tmp.slice(start, end);
+          resolve(result);
+        });
+      });
+      return promise;
+    }
   }
 }
 

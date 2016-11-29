@@ -86,45 +86,29 @@ export default class EntryList {
       if(page > 1){
         prev = page - 1;
       }
-
+      if(!Entry.count) {
+        Entry.count = Entry.collection.length;
+      }
       let maxPage = Entry.count / limit;
+
       if(Entry.count % limit > 0 && Entry.count > limit){
         maxPage = parseInt(maxPage) + 1;
       }
-      let pages;
-      console.log(maxPage, page)
-      if(page <= 3){
-        let i = maxPage;
-        if(i > (limit - 1)){
-          i = limit;
-        }
-        pages = [];
-        while(i > 0){
-          pages.push(i);
-          i--;
-        }
-        pages.reverse();
-
-      } else if(maxPage - page < 2){
-        let i = limit;
-        pages = [];
-        while(i > 0){
-          pages.push(maxPage--);
-          i--;
-        }
-      } else {
-        pages = [page - 2, page - 1, page, page + 1, page + 2];
-      }
-      if(maxPage != page){
+      if(maxPage != page && maxPage > page){
         next = page + 1;
+      } else {
+        next = null;
       }
-      elm = this.tmpl.update({pages:pages, next:next, prev:prev});
+      elm = this.tmpl.update({next:next, prev: prev});
     } catch(error){
       console.log(error);
     }
 
     let doc = document;
     let tgt = doc.getElementById(TGT);
+    if(!elm || elm === 'undefined'||!tgt) {
+      return;
+    }
     tgt.appendChild(elm);
   }
 }

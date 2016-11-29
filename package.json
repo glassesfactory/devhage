@@ -20,6 +20,8 @@
     "request": "^2.65.0"
   },
   "dependencies": {
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
     "broccoli": "^0.16.9",
     "broccoli-babel-transpiler": "^5.5.0",
     "broccoli-browserify": "^0.1.0",

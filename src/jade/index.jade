@@ -3,7 +3,7 @@ html(lang="ja")
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width")
-    
+
     title デブハゲ
     meta(name="description" content="でぶはげ　めしくえ")
     meta(property="og:locale" content="ja_JP")
@@ -12,32 +12,34 @@ html(lang="ja")
     meta(property="og:type" content="article")
     meta(property="og:title" content="デブハゲ")
     meta(property="og:description" content="でぶはげ　めしくえ")
+    meta(property="twitter:card" content="summary")
+    meta(property="twitter:title" content="デブハゲ")
+    meta(property="twitter:site" content="@__hage__")
+    meta(property="twitter:description" content="でぶはげ　めしくえ")
+
     link(title="デブハゲ" href="http://dev.hageee.net/feed" rel="alternate" type="application/rss+xml")
-    
-    
+    link(rel="canonical" href="https://dev.hageee.net/")
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js")
+
   body
     .body-wrapper
-      .sidebar
-        .sidebar-inner
-          .sidebar-logo
-            a(href="/")#js-sidebar-logo.js-ps-change.logo devhage
-          #js-sidebar-recent.sidebar-recent-list
-          .sidebar-about
-            #js-side-icon.sidebar-about-icon
-              img(src="https://ja.gravatar.com/userimage/13578199/5a111c4643ab5d64858a8e7c34d5a996.jpg")
-            #js-side-about.sidebar-about-content
-              ul
-                li 書いてる人: hage
-                li 職業: 釣り人, なんちゃってプログラマ
-                li: a(href="http://twitter.com/__hage__") twitter
-                li: a(href="http://github.com/glassesfactory") github
-              
-          footer.footer Copyright &copy; devhage. All Rights Reserved.
+      header.header
+        .header-logo-container
+          h1
+            a(href="/")#js-logo.header-logo devhage
+        .header-sp-nav
+          #js-sp-subheader
+      #js-subheader.subheader
+
       .main
         #js-content
         #js-paginator
-        
-    
+
+      footer.footer Copyright &copy; devhage. All Rights Reserved.
+
+
+
 
     link(type="text/css" rel="stylesheet" href="/assets/stylesheets/main.css")
     script(type="text/javascript" charset="utf-8" src="/assets/javascripts/front.js" async)

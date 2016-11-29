@@ -59,6 +59,12 @@ var imagesTree = pickFiles('src/statics',{
   // files: ['**/*.svg'],
   destDir: 'assets'
 });
+
+var jsonTree = pickFiles('src/statics', {
+  srcDir: '/data',
+  destDir: 'data'
+});
 js = uglifyJavaScript(js);
 css = cleanCSS(css);
-module.exports = mergeTrees([js, html, css, imagesTree]);
+
+module.exports = mergeTrees([js, html, css, imagesTree, jsonTree]);
