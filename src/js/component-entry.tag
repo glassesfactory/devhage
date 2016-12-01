@@ -41,6 +41,7 @@
         opts.id = this.data.slug;
       }
     });
+
     this.on("mount", ()=>{
       // 何か壮大に意味のないことをやっている気がする
       let title = opts.data.title;
