@@ -1,18 +1,13 @@
-const request = require('../core/xhr');
-const Emitter = require('../core/emitter');
-const ObjectHelper = require('../core/helpers/object');
-const TextHelper = require('../core/helpers/text');
-const Config = require('../../../config.json')
+import ObjectHelper from '../helpers/object';
+import TextHelper from '../helpers/text';
 
-
-class Entry extends Emitter{
+class Entry {
 
 
   /**
     でーた
   */
   constructor(obj){
-    super();
     this._setupDefault();
     this._fromObject(obj);
   }
@@ -34,8 +29,6 @@ class Entry extends Emitter{
   save(){
     this.description = TextHelper.decode(this.description);
     this.content = TextHelper.decode(this.content);
-    // Entry.collection.push(this);
-    // Entry.indexed[this.slug] = this;
   }
 
   static _find(page){
@@ -45,22 +38,24 @@ class Entry extends Emitter{
   /*
     取得する
   */
-  static fetch(slug){
+  static fetchData(slug){
     let url = "/data/" + slug + ".json";
     let promise = new Promise((resolve, reject)=>{
       if(Entry.collection.hasOwnProperty(slug)){
         resolve(Entry.indexed[id]);
       } else {
-        request.get(url)
-        .end((err, res)=>{
-          if( err != null || !res.body){
-            reject();
-            return;
+        fetch(url)
+        .then((res)=>{
+          if(!res.ok){
+            reject(res);
           }
-          let entry = res.body;
-          let model = new Entry(entry);
-          model.save();
-          resolve(model);
+          res.json().then((data)=>{
+            let model = new Entry(data);
+            model.save();
+            resolve(model);
+          }).catch(()=>{
+            reject();
+          });
         });
       }
     });
@@ -81,41 +76,41 @@ class Entry extends Emitter{
       return promise;
     }
     let url = "/data/list/all.json";
+    let promise;
     if(Entry.listLoaded){
-      let promise = new Promise((resolve, reject)=>{
+      promise = new Promise((resolve, reject)=>{
         let start = (page - 1) * 5;
         let end = page * 5;
         let result = Entry.collection.slice(start, end);
-        console.log(result);
         resolve(result);
       });
       return promise;
     } else {
-      let promise = new Promise((resolve, reject)=>{
-        request.get(url)
-        .end((err, res)=>{
-
-          if(err != null || !res.body){
+      promise = new Promise((resolve, reject)=>{
+        fetch(url)
+        .then((res)=>{
+          if(!res.ok){
             reject();
             return
           }
-          Entry.listLoaded = true;
-          let data = res.body.data;
-          let count = res.body.count;
-
-          Entry.count = count;
-          let tmp = [];
-
-          data.map(function(item){
-            let model = new Entry(item);
-            tmp.push(model);
-            model.save();
-            Entry.collection.push(model);
+          res.json().then((data)=>{
+            Entry.listLoaded = true;
+            let tmp = [];
+            // うーん
+            Entry.count = data.data.length;
+            data.data.forEach((item)=>{
+              let model = new Entry(item);
+              tmp.push(model);
+              model.save();
+              Entry.collection.push(model);
+            });
+            let start = (page - 1) * 5;
+            let end = page * 5;
+            let result = tmp.slice(start, end);
+            resolve(result);
+          }).catch(()=>{
+            reject();
           });
-          let start = (page - 1) * 5;
-          let end = page * 5;
-          let result = tmp.slice(start, end);
-          resolve(result);
         });
       });
       return promise;

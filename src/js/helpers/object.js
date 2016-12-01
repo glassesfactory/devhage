@@ -1,4 +1,4 @@
-export default class ObjectHelper{
+export default class ObjectHelper {
   static kv(key, obj, defaultValue){
     if(obj.hasOwnProperty(key)){
       return obj[key];

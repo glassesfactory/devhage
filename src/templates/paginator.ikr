@@ -1,5 +1,0 @@
-<div class="paginator">
-  <a href="/page/{{prev}}" class="paginator-prev js-ps-change" i-if="this.datas.prev"></a>
-  
-  <a href="/page/{{next}}" class="paginator-next js-ps-change" i-if="this.datas.next"></a>
-</div>
