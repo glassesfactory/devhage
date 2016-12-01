@@ -50,7 +50,6 @@ class Entry {
             reject(res);
           }
           res.json().then((data)=>{
-            console.log(data);
             let model = new Entry(data);
             model.save();
             resolve(model);
@@ -83,7 +82,6 @@ class Entry {
         let start = (page - 1) * 5;
         let end = page * 5;
         let result = Entry.collection.slice(start, end);
-        console.log(result);
         resolve(result);
       });
       return promise;
@@ -97,12 +95,10 @@ class Entry {
           }
           res.json().then((data)=>{
             Entry.listLoaded = true;
-            let count = res.body.count;
-
-            Entry.count = count;
             let tmp = [];
-
-            data.map((item)=>{
+            // うーん
+            Entry.count = data.data.length;
+            data.data.forEach((item)=>{
               let model = new Entry(item);
               tmp.push(model);
               model.save();

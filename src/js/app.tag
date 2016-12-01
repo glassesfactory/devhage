@@ -1,43 +1,40 @@
 <app>
 
   <app-header />
-  <main>
-    <app-list if={state=="list"} />
-    <app-detail if={state=="detail"} />
+  <main class="app-main">
+    <app-list if={state=="list"} page={page} />
+    <app-detail if={state=="detail"} id={currentID} />
   </main>
 
   <script>
     import route from 'riot-route';
-    import Entry from './models/entry';
+
     let r = route.create();
 
-
     r('/', list);
+    r('/page/*', list);
     r('/*', detail);
-    // r(list);
+
     route.base('/');
     route.start(true);
-    // this.state = "list";
+
     let self = this;
-    function list(){
-      self.state = "list";
-      let page = "1";
+
+    function list(page){
       if(!page){
         page = 1;
       }
-      Entry.list(page)
-      .then(function(result){
-        // Signal.notify("list_fetch", [result, page]);
-        self.update();
-      })
-      .catch(function(){
-        console.log("uuuuuuu");
-      });
+      self.update({state: "list", page: page});
     }
 
     function detail(id){
-      self.state = "detail";
+      self.update({state: "detail", currentID: id});
     }
+
+    this.on("update", ()=>{
+      // うーむ
+      window.scrollTo(0, 0);
+    });
   </script>
 
   <style>

@@ -24,12 +24,14 @@
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-riot": "^1.0.0",
-    "rollup-plugin-stylus-css-modules": "^1.2.2"
+    "rollup-plugin-stylus-css-modules": "^1.2.2",
+    "rollup-plugin-uglify": "^1.0.1"
   },
   "dependencies": {
     "mson2json": "^1.0.7",
     "riot": "^3.0.1",
     "riot-route": "^3.0.1",
-    "stylus": "^0.52.4"
+    "stylus": "^0.52.4",
+    "whatwg-fetch": "^2.0.1"
   }
 }
