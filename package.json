@@ -2,29 +2,34 @@
   "name": "static_blog",
   "version": "2.0.0",
   "description": "bloggggggggggggggg",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "styl": "stylus src/stylus/main.styl -o assets/stylesheets/main.css",
+    "build": "rollup -c && npm run styl",
+    "server": "npm run build && superstatic"
   },
   "author": "Yamaguchi Eikichi",
   "license": "MIT",
+  "private": true,
   "devDependencies": {
     "aws-sdk": "^2.2.17",
+    "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-preset-es2015-rollup": "^1.2.0",
     "jsdom": "^3.1.2",
     "markdown-to-json": "^0.4.2",
     "node-rss": "^1.0.5",
     "request": "^2.65.0",
     "rollup": "^0.36.4",
-    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-buble": "^0.14.0",
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-resolve": "^2.0.0",
-    "rollup-plugin-riot": "^1.0.0"
+    "rollup-plugin-riot": "^1.0.0",
+    "rollup-plugin-stylus-css-modules": "^1.2.2"
   },
   "dependencies": {
     "mson2json": "^1.0.7",
     "riot": "^3.0.1",
+    "riot-route": "^3.0.1",
     "stylus": "^0.52.4"
   }
 }

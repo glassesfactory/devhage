@@ -1,15 +1,16 @@
-import riot from 'rollup-plugin-riot'
-import nodeResolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
-import babel from 'rollup-plugin-babel'
+import riot from 'rollup-plugin-riot';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import buble from 'rollup-plugin-buble';
+import stylusCssModules from 'rollup-plugin-stylus-css-modules';
 
 export default {
-  entry: 'src/js/main.js'
-  dest: 'dist/javascripts/main.js'
+  entry: 'src/js/main.js',
+  dest: 'assets/javascripts/main.js',
   plugins: [
     riot(),
-    nodeResolve(),
+    nodeResolve({ jsnext: true }),
     commonjs(),
-    babel()
+    buble()
   ]
 }
