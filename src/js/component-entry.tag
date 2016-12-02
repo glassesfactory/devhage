@@ -28,9 +28,13 @@
     }
 
     toHtml(str){
-      let frag = document.createDocumentFragment();
-      frag.innerHTML = str;
-      return frag.innerHTML;
+      let div = document.createElement("div");
+      div.innerHTML = str;
+      let codes = div.getElementsByTagName('code');
+      Array.prototype.forEach.call(codes, (code)=>{
+        code.innerHTML = code.innerHTML.replace(/</g, '&lt;');
+      })
+      return div;
     }
 
     let self = this;
@@ -49,9 +53,14 @@
         title = '<a href="/' + opts.data.slug + '">' + opts.data.title + "</a>"
       }
       this.refs.title.innerHTML = title;
-      this.refs.desc.innerHTML = this.toHtml(opts.data.description);
+      let desc = this.toHtml(opts.data.description);
+      if(desc){
+        this.refs.desc.appendChild(desc);
+      }
       if(opts.isdetail){
-        this.refs.content.innerHTML = this.toHtml(opts.data.content);
+        let content = this.toHtml(opts.data.content);
+        if(content)
+          this.refs.content.appendChild(content);
       }
     });
   </script>
