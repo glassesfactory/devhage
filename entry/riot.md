@@ -100,7 +100,7 @@ XSS の危険性もあるし推奨出来ないけどそれはそれ、これは�
 
 一応 React だと以下のようにして HTML タグ入りテキストを挿入できる。
 
-<script src=\"https://gist.github.com/glassesfactory/af9460c66b6fc1b79727685f48169b63.js\"></script>
+<script src=\"https://gist.github.com/glassesfactory/af9460c66b6fc1b79727685f48169b63.js\">{}</script>
 
 思いっきり dangerously とか言われてる。  
 ちなみに自分はちゃんとタグをパースしてサニタイズと React でエレメント作って変換するヘルパー書きましたよ。
@@ -108,12 +108,12 @@ XSS の危険性もあるし推奨出来ないけどそれはそれ、これは�
 例に漏れず Riot もその辺の XSS を考慮した思想はもっているようで、  
 HTML タグ入りテキストをテンプレートに渡すとそのまま出力される。
 
-<script src=\"https://gist.github.com/glassesfactory/5ad1c53f8616a6d73274a8c8cc111ea5.js\"></script>
+<script src=\"https://gist.github.com/glassesfactory/5ad1c53f8616a6d73274a8c8cc111ea5.js\">{}</script>
 
 しかし、Riot には React の dangerouslySetInnerHTML 的な禁術は用意されていない様子。  
 ググっても出てこないので結局以下のような方法にした。
 
-<script src=\"https://gist.github.com/glassesfactory/488918eff2affb1fc0b0f5f36d2392f8.js\"></script>
+<script src=\"https://gist.github.com/glassesfactory/488918eff2affb1fc0b0f5f36d2392f8.js\">{}</script>
 
 React と違って DOM を仮想 DOM でガッチリ食ってるわけでは無いようなので  
 容赦のない変更を図る。  
@@ -126,12 +126,12 @@ React と違って DOM を仮想 DOM でガッチリ食ってるわけでは無�
 
 React で言う、親から子へのプロパティ渡し。
 
-<script src=\"https://gist.github.com/glassesfactory/0bc13a2c2c49bdb0746b0bfd2eb4c1a3.js\"></script>
+<script src=\"https://gist.github.com/glassesfactory/0bc13a2c2c49bdb0746b0bfd2eb4c1a3.js\">{}</script>
 
 っぽいサンプルやドキュメントの記述が無いのでいまいちわかりづらいが、  
 一応似たようなことはできる。
 
-<script src=\"https://gist.github.com/glassesfactory/f4afa22bf20c6b760bc0e6e018138727.js\"></script>
+<script src=\"https://gist.github.com/glassesfactory/f4afa22bf20c6b760bc0e6e018138727.js\">{}</script>
 
 React を経験するとすごく初歩的な親子関係を表す構図にも見えるが、  
 Riot 的にはそうでもないらしい。  
