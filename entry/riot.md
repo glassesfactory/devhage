@@ -114,7 +114,7 @@ HTML タグ入りテキストをテンプレートに渡すとそのまま出力
     <CustomTag>
       <div>{tagIriText}</div>
       <script>
-          this.update({tagIriText: “<small>💩</small>”});
+          this.update({tagIriText: "<small>💩</small>"});
       </script>
     </CustomTag>
 
@@ -122,11 +122,11 @@ HTML タグ入りテキストをテンプレートに渡すとそのまま出力
 ググっても出てこないので結局以下のような方法にした。
 
     <CustomTag>
-      <div ref=“foo">{tagIriText}</div>
+      <div ref="foo">{tagIriText}</div>
       <script>
-          import sanitize from ‘../utils’;
-          this.on(“mount”, ()=>{
-             this.refs.foo.innerHTML = sanitize(“<small>💩</small>”);
+          import sanitize from "../utils";
+          this.on("mount", ()=>{
+             this.refs.foo.innerHTML = sanitize("<small>💩</small>");
           });
       </script>
     </CustomTag>
@@ -148,7 +148,7 @@ React で言う、親から子へのプロパティ渡し。
       }
 
       render(){
-        return (<div>{this.props.text</div>);
+        return (<div>{this.props.text}</div>);
       }
     }
 
@@ -158,7 +158,7 @@ React で言う、親から子へのプロパティ渡し。
       }
 
       render(){
-        return (<Child text={“🐟” />);
+        return (<Child text={"🐟"} />);
       }
     }
 
@@ -170,7 +170,7 @@ React で言う、親から子へのプロパティ渡し。
     </child>
 
     <parent>
-      <child text={“🐟”} />
+      <child text={"🐟"} />
     </parent>
 
 React を経験するとすごく初歩的な親子関係を表す構図にも見えるが、  
