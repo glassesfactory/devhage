@@ -27,14 +27,46 @@
       return year + "/" + month + "/" + day + " " + hour + ":" + min
     }
 
+    _sanitizeCode(line){
+      line = line.replace(/<(\/)*code>/, "")
+        .replace(/<(\/)*pre>/, "")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, "&") + "\n"
+      return line;
+    }
+
     toHtml(str){
-      let div = document.createElement("div");
-      div.innerHTML = str;
-      let codes = div.getElementsByTagName('code');
-      Array.prototype.forEach.call(codes, (code)=>{
-        code.innerHTML = code.innerHTML.replace(/</g, '&lt;');
-      })
-      return div;
+      let result = document.createDocumentFragment();
+      let tmp = "";
+      let isCode = false;
+      str.split("\n").forEach((line)=>{
+        let toCodeClose = false;
+        if(line.match(/\<pre\>/)){
+          isCode = true;
+          tmp = document.createElement("pre");
+          tmp.appendChild(document.createElement("code"));
+        }
+        if(line.match(/\<\/pre\>/)){
+          toCodeClose = true;
+        }
+        if(isCode){
+          line = this._sanitizeCode(line);
+          tmp.childNodes[0].appendChild(document.createTextNode(line));
+        } else {
+          let div = document.createElement("div");
+          div.innerHTML = line;
+          if(div.childNodes[0]){
+            result.appendChild(div.childNodes[0]);
+          }
+        }
+        if(toCodeClose){
+          isCode = false;
+          result.appendChild(tmp);
+        }
+
+      });
+      return result;
     }
 
     let self = this;
