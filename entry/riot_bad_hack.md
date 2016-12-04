@@ -11,7 +11,7 @@ Riot.js の Scoped な CSS について、
 
 ## meta
 
-- slug: riot
+- slug: riot_bad_hack
 - date: 2016-12-05 01:20
 - tags: riot,js,cssnext
 - active: true
