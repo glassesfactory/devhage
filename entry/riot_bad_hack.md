@@ -1,8 +1,7 @@
 #Riot.js の Scoped な CSS に無理やり外部 CSS を import させる
 
-[前回の記事で](https://dev.hageee.net/riot)長くなったから省いた、
-Riot.js の Scoped な CSS について、  
-解説がてら所感を語ろうと思っていたことがいくつかあった。
+[前回の記事で](https://dev.hageee.net/riot) 長くなったから省いた、  
+Riot.js の Scoped な CSS について、解説がてら所感を語ろうと思っていたことがいくつかあった。
 
 ので、この土日で適当な UI サンプルを作りつつ  
 記事を書いていたのだけれど思わぬところで躓いて(調査不足)、  
@@ -56,6 +55,7 @@ CSSNext なことは以下の記事を読むと出来るようになる。
 > No way. Postcss plugins should be async only (where it's possible).
 
 
+
 > No way.
 
 
@@ -84,7 +84,8 @@ CSSNext なことは以下の記事を読むと出来るようになる。
         return result;
     }
 
-悲しみにかまけて書いたので色々汚いのはゴメーンね。
+悲しみにかまけて書いたので色々汚いのはゴメーンね。  
+もし使うのであれば `fs` と `path` モジュールは別途インポートしてください。
 
 
 以下のように Riot.js の `<style>` タグの  
@@ -152,3 +153,21 @@ Riot で以下のように書く。
 
 とりあえず殴りがいたことを殴りがいた。  
 おやすみ世界。
+
+
+**追記**
+
+起きて冷静になって考えたらここまでやるなら  
+そもそも rollup じゃなくて gulp 使えばいいんじゃないか
+
+という気もしつつ、必要なのはここだけなのでそれもなんだかなぁという気分になった。
+
+とは言え、 issue のやり取りにあった
+
+> Postcss plugins should be async only (where it's possible).
+
+という一文を考えると、おいおい `riot-compiler` なのか、  
+`rollup-riot-plugin` なのかは分からないが非同期に対応していくとは思うので  
+多少力任せなコードでもつなぎと考えればまぁ良しとしようと思った。
+
+async/await がもっと気軽に使えるようになればこの手の問題はほぼほぼ解決すると思うのではよ。
