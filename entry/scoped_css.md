@@ -15,6 +15,7 @@ Scoped CSS で綺麗に設計するにはどうしたら良いか
 - slug: scopedcss_first
 - date: 2016-12-11 11:11
 - tags: riot, css
+- cover: https://s3-ap-northeast-1.amazonaws.com/devhage/images/cover/scoped.png
 - active: true
 
 ## content
